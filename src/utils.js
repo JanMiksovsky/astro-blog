@@ -1,15 +1,18 @@
-export function slugFromPath(filePath) {
-  const fileName = filePath.split("/").pop();
-  return fileName.replace(/.md$/, "");
-}
-
-// Given a file path like `/posts/2025-12-25.md`, return the date
-export function dateFromPath(filePath) {
-  const slug = slugFromPath(filePath);
-  const dateObj = new Date(slug);
-  return dateObj.toLocaleDateString();
-}
-
-export function allPosts() {
-  return import.meta.glob("../posts/*.md");
+// Return the array of posts
+// These are the post imports plus other data we care about
+export async function allPosts() {
+  const globs = import.meta.glob("../posts/*.md");
+  return Promise.all(
+    Object.entries(globs).map(async ([path, resolver]) => {
+      const post = await resolver();
+      const fileName = path.split("/").pop();
+      const slug = fileName.replace(/.md$/, "");
+      const dateObj = new Date(slug);
+      const formattedDate = dateObj.toLocaleDateString();
+      return Object.assign({}, post, {
+        date: formattedDate,
+        slug,
+      });
+    })
+  );
 }

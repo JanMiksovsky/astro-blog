@@ -1,31 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { allPosts, dateFromPath, slugFromPath } from "../../utils";
+import { allPosts } from "../../utils";
 
 export async function getStaticPaths() {
-  const posts = allPosts();
-  const paths = Object.keys(posts).map((filePath) => ({
-    params: { slug: slugFromPath(filePath) },
+  const posts = await allPosts();
+  return posts.map((postData) => ({
+    params: { slug: postData.slug },
   }));
-  return paths;
 }
 
 const { slug } = Astro.params;
-const posts = allPosts();
-const postImport = Object.entries(posts).find(([path]) =>
-  path.endsWith(`${slug}.md`)
-);
-
-if (!postImport) {
-  throw new Error(`Post not found: ${slug}`);
-}
-
-const post = await postImport[1]();
+const posts = await allPosts();
+const post = posts.find((post) => post.slug === slug);
 ---
 
 <BaseLayout title={post.frontmatter.title}>
   <article>
-    <p>{dateFromPath(post.file)}</p>
+    <p>{post.date}</p>
     <section>
       <post.Content />
     </section>

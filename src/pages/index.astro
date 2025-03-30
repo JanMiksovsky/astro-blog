@@ -1,20 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { allPosts, dateFromPath, slugFromPath } from "../utils.js";
+import { allPosts } from "../utils.js";
 
 // Process each post to extract the slug and date from the file name.
-const posts = await Promise.all(
-  Object.entries(allPosts()).map(async ([path, resolver]) => {
-    const post = await resolver();
-    const slug = slugFromPath(path);
-    const formattedDate = dateFromPath(path);
-    return {
-      slug,
-      title: post.frontmatter.title,
-      date: formattedDate,
-    };
-  })
-);
+const posts = await allPosts();
 ---
 
 <BaseLayout title="Home">
@@ -22,7 +11,8 @@ const posts = await Promise.all(
     {
       posts.map((post) => (
         <li>
-          <a href={`/posts/${post.slug}`}>{post.title}</a> – {post.date}
+          <a href={`/posts/${post.slug}`}>{post.frontmatter.title}</a> –{" "}
+          {post.date}
         </li>
       ))
     }
