@@ -1,0 +1,12 @@
+---
+import team from "./team.js";
+
+export const getStaticPaths = () =>
+  team.map((person) => ({
+    params: { name: person.name },
+  }));
+
+const person = team.find((p) => p.name === Astro.params.name);
+---
+
+<h1>{person?.name}</h1>

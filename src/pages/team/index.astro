@@ -1,0 +1,13 @@
+---
+import team from "./team.js";
+---
+
+<ul>
+  {
+    team.map((person) => (
+      <li>
+        <a href={`/team/${person.name}`}>{person.name}</a>
+      </li>
+    ))
+  }
+</ul>
