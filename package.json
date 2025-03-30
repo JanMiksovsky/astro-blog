@@ -1,0 +1,12 @@
+{
+  "name": "astro-blog",
+  "type": "module",
+  "dependencies": {
+    "astro": "5.5.5"
+  },
+  "scripts": {
+    "build": "astro build",
+    "start": "astro dev",
+    "preview": "astro preview"
+  }
+}
