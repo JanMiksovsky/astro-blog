@@ -7,10 +7,9 @@ export async function allPosts() {
       const post = await resolver();
       const fileName = path.split("/").pop();
       const slug = fileName.replace(/.md$/, "");
-      const dateObj = new Date(slug);
-      const formattedDate = dateObj.toLocaleDateString();
+      const date = new Date(slug);
       return Object.assign({}, post, {
-        date: formattedDate,
+        date,
         slug,
       });
     })

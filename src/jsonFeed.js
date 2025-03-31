@@ -1,0 +1,21 @@
+import { allPosts } from "./utils.js";
+
+export default async function () {
+  const site = "https://pondlife-astro.netlify.app";
+  const posts = await allPosts();
+  const items = await Promise.all(
+    posts.map(async (post) => ({
+      content_html: await post.compiledContent(),
+      date_published: post.date,
+      id: `${site}/posts/${post.slug}`,
+      title: post.frontmatter.title,
+      url: `${site}/posts/${post.slug}`,
+    }))
+  );
+  return {
+    title: "#pondlife",
+    description: "Dispatches from off the grid",
+    site,
+    items,
+  };
+}

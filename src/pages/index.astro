@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PostFragment from "../layouts/PostFragment.astro";
 import { allPosts } from "../utils.js";
 
 // Process each post to extract the slug and date from the file name.
@@ -8,13 +9,6 @@ const posts = await allPosts();
 
 <BaseLayout title="Home">
   <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/posts/${post.slug}`}>{post.frontmatter.title}</a> –{" "}
-          {post.date}
-        </li>
-      ))
-    }
+    {posts.map((post) => <PostFragment post={post} />)}
   </ul>
 </BaseLayout>

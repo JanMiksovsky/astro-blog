@@ -7,14 +7,15 @@ const { title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
     <title>{title}</title>
   </head>
   <body>
     <header>
-      <h1>{title}</h1>
+      <a href="/" class="home">#pondlife</a>
+      <a href="/about.html" class="about">About</a>
     </header>
     <main>
-      <!-- The page content will be injected here -->
       <slot />
     </main>
   </body>

@@ -1,0 +1,17 @@
+---
+const { post } = Astro.props;
+---
+
+<section>
+  <a href={`/posts/${post.slug}`}>
+    <h2>{post.frontmatter.title}</h2>
+  </a>
+  {
+    post.date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  }
+  <post.Content />
+</section>
