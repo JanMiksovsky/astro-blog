@@ -1,5 +1,7 @@
 ---
-const { title } = Astro.props;
+const { props } = Astro;
+const area = props.area ?? props.frontmatter?.area;
+const title = props.title ?? props.frontmatter?.title ?? "#pondlife";
 ---
 
 <!doctype html>
@@ -10,7 +12,7 @@ const { title } = Astro.props;
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={area ?? ""}>
     <header>
       <a href="/" class="home">#pondlife</a>
       <a href="/about.html" class="about">About</a>

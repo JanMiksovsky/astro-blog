@@ -1,0 +1,30 @@
+---
+import allPosts from "../../allPosts.js";
+import MultiplePostPage from "../../layouts/MultiplePostPage.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await allPosts();
+  return paginate(posts, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+const { data: posts, currentPage, lastPage } = page;
+const nextPage =
+  currentPage < lastPage ? `/pages/${currentPage + 1}.html` : null;
+const previousPage =
+  currentPage > 2
+    ? `/pages/${currentPage - 1}.html`
+    : currentPage === 2
+      ? `/`
+      : null;
+const area = currentPage == 1 ? "home" : null;
+const title = `#pondlife — Page ${currentPage}`;
+---
+
+<MultiplePostPage
+  posts={posts}
+  area={area}
+  title={title}
+  nextPage={nextPage}
+  previousPage={previousPage}
+/>

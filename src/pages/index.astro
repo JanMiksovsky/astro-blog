@@ -1,14 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import PostFragment from "../layouts/PostFragment.astro";
-import { allPosts } from "../utils.js";
+import allPosts from "../allPosts.js";
+import MultiplePostPage from "../layouts/MultiplePostPage.astro";
 
-// Process each post to extract the slug and date from the file name.
 const posts = await allPosts();
+const postsFirstPage = posts.slice(0, 10);
+const nextPage = posts.length > 10 ? "/pages/2.html" : null;
 ---
 
-<BaseLayout title="Home">
-  <ul>
-    {posts.map((post) => <PostFragment post={post} />)}
-  </ul>
-</BaseLayout>
+<MultiplePostPage
+  area="home"
+  title="Home"
+  posts={postsFirstPage}
+  nextPage={nextPage}
+/>

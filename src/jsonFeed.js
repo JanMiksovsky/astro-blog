@@ -1,4 +1,4 @@
-import { allPosts } from "./utils.js";
+import allPosts from "./allPosts.js";
 
 export default async function () {
   const site = "https://pondlife-astro.netlify.app";

@@ -1,7 +1,7 @@
 ---
+import allPosts from "../../allPosts.js";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostFragment from "../../layouts/PostFragment.astro";
-import { allPosts } from "../../utils";
 
 export async function getStaticPaths() {
   const posts = await allPosts();

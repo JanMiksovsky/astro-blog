@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostFragment from "../layouts/PostFragment.astro";
+
+const { area, nextPage, posts, previousPage, title } = Astro.props;
+---
+
+<BaseLayout area={area} title={title}>
+  {posts.map((post) => <PostFragment post={post} />)}
+  <p>
+    {
+      nextPage ? (
+        <a class="next" href={nextPage}><strong>Older posts</strong></a>
+        <span>&nbsp;</span>
+      ) : (
+        ""
+      )
+    }
+    {
+      previousPage ? (
+        <a class="previous" href={previousPage}><strong>Newer posts</strong></a>
+      ) : (
+        ""
+      )
+    }
+  </p>
+</BaseLayout>
