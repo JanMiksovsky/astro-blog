@@ -1,6 +1,7 @@
 ---
 import allPosts from "../../allPosts.js";
 import MultiplePostPage from "../../layouts/MultiplePostPage.astro";
+import siteInfo from "../../siteInfo.js";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await allPosts();
@@ -18,7 +19,7 @@ const previousPage =
       ? `/`
       : null;
 const area = currentPage == 1 ? "home" : null;
-const title = `#pondlife — Page ${currentPage}`;
+const title = `${siteInfo.title} — Page ${currentPage}`;
 ---
 
 <MultiplePostPage

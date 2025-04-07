@@ -1,5 +1,8 @@
 import config from "../astro.config.js";
 import allPosts from "./allPosts.js";
+import siteInfo from "./siteInfo.js";
+
+const { description, title } = siteInfo;
 
 export default async function () {
   const { site } = config;
@@ -14,8 +17,8 @@ export default async function () {
     }))
   );
   return {
-    title: "#pondlife",
-    description: "Dispatches from off the grid",
+    title,
+    description,
     site,
     items,
   };

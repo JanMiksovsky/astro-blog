@@ -1,7 +1,9 @@
 ---
+import siteInfo from "../siteInfo.js";
+
 const { props } = Astro;
 const area = props.area ?? props.frontmatter?.area;
-const title = props.title ?? props.frontmatter?.title ?? "#pondlife";
+const title = props.title ?? props.frontmatter?.title ?? siteInfo.title;
 ---
 
 <!doctype html>
@@ -14,7 +16,7 @@ const title = props.title ?? props.frontmatter?.title ?? "#pondlife";
   </head>
   <body class={area ?? ""}>
     <header>
-      <a href="/" class="home">#pondlife</a>
+      <a href="/" class="home">{siteInfo.title}</a>
       <a href="/about.html" class="about">About</a>
     </header>
     <main>
