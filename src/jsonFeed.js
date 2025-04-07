@@ -1,7 +1,8 @@
+import config from "../astro.config.js";
 import allPosts from "./allPosts.js";
 
 export default async function () {
-  const site = "https://pondlife-astro.netlify.app";
+  const { site } = config;
   const posts = await allPosts();
   const items = await Promise.all(
     posts.map(async (post) => ({

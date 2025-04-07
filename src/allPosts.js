@@ -15,9 +15,19 @@ export default async function allPosts() {
       });
     })
   );
-  // Sort posts by date, latest first
-  const reversed = posts.sort((a, b) => {
-    return b.date - a.date;
+
+  // Sort posts by date
+  posts.sort((a, b) => a.date - b.date);
+
+  // Add next/previous links before reversing
+  posts.forEach((post, index) => {
+    const nextKey = posts[index + 1]?.slug || null;
+    const previousKey = posts[index - 1]?.slug || null;
+    return Object.assign(post, { nextKey, previousKey });
   });
+
+  // Reverse the order of the posts
+  const reversed = posts.reverse();
+
   return reversed;
 }

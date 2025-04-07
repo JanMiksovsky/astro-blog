@@ -13,8 +13,31 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const posts = await allPosts();
 const post = posts.find((post) => post.slug === slug);
+const nextPost = posts.find((p) => p.slug === post.nextKey);
+const previousPost = posts.find((p) => p.slug === post.previousKey);
 ---
 
 <BaseLayout title={post.frontmatter.title}>
   <PostFragment post={post} />
+  <p>
+    {
+      previousPost && (
+        <a class="previous" href={post.previousKey}>
+          Previous: {previousPost.frontmatter.title}
+        </a>
+        <span>&nbsp;</span>
+      )
+    }
+    {
+      nextPost ? (
+        <a class="next" href={post.nextKey}>
+          Next: {nextPost.frontmatter.title}
+        </a>
+      ) : (
+        <a class="next" href="/">
+          Back to home
+        </a>
+      )
+    }
+  </p>
 </BaseLayout>
