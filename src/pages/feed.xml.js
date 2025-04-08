@@ -1,12 +1,12 @@
 // import rss from "@astrojs/rss";
 // import sanitizeHtml from "sanitize-html";
 import jsonFeed from "../jsonFeed.js";
-import rss from "../rss.js";
+import jsonFeedToRss from "../jsonFeedToRss.js";
 
 export async function GET() {
-  // Convert JSON Feed data to the form expectd by the rss() helper
+  // Convert JSON Feed data to the form expectd by the RSS helper
   const feed = await jsonFeed();
-  const xml = rss(feed);
+  const xml = jsonFeedToRss(feed);
   // const { title, description, site, items: feedItems } = feed;
   // const items = feedItems.map((item) => ({
   //   title: item.title,
