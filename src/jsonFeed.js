@@ -1,5 +1,5 @@
 import config from "../astro.config.js";
-import allPosts from "./allPosts.js";
+import allPosts from "./posts.js";
 import siteInfo from "./siteInfo.js";
 
 const { description, title } = siteInfo;

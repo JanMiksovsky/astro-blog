@@ -1,6 +1,6 @@
 ---
-import allPosts from "../allPosts.js";
 import MultiplePostPage from "../layouts/MultiplePostPage.astro";
+import allPosts from "../posts.js";
 
 const posts = await allPosts();
 const postsFirstPage = posts.slice(0, 10);
