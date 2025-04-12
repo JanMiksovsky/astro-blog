@@ -9,7 +9,10 @@ export default async function () {
   const posts = await allPosts();
   const items = await Promise.all(
     posts.map(async (post) => ({
-      content_html: await post.compiledContent(),
+      // Patch image URLs to be absolute
+      content_html: (
+        await post.compiledContent()
+      ).replace(/src="\//g, `src="${site}/`),
       date_published: post.date,
       id: `${site}/posts/${post.slug}`,
       title: post.frontmatter.title,
