@@ -20,9 +20,11 @@ export default async function () {
     }))
   );
   return {
+    version: "https://jsonfeed.org/version/1.1",
     title,
     description,
-    site,
+    home_page_url: site,
+    feed_url: `${site}/feed.json`,
     items,
   };
 }

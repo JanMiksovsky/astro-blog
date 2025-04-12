@@ -7,10 +7,10 @@ const title = props.title ?? props.frontmatter?.title ?? siteInfo.title;
 ---
 
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
     <link
       rel="alternate"
@@ -26,7 +26,7 @@ const title = props.title ?? props.frontmatter?.title ?? siteInfo.title;
     />
     <title>{title}</title>
   </head>
-  <body class={area ?? ""}>
+  <body {...area ? { class: area } : {}}>
     <header>
       <a href="/" class="home">{siteInfo.title}</a>
       <a href="/about.html" class="about">About</a>

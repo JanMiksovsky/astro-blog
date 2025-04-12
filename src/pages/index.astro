@@ -1,6 +1,7 @@
 ---
 import MultiplePostPage from "../layouts/MultiplePostPage.astro";
 import allPosts from "../posts.js";
+import siteInfo from "../siteInfo.js";
 
 const posts = await allPosts();
 const postsFirstPage = posts.slice(0, 10);
@@ -9,7 +10,7 @@ const nextPage = posts.length > 10 ? "/pages/2.html" : null;
 
 <MultiplePostPage
   area="home"
-  title="Home"
   posts={postsFirstPage}
   nextPage={nextPage}
+  title={`${siteInfo.title} — Page 1`}
 />

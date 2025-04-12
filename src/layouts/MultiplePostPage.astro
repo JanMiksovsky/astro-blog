@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostFragment from "../layouts/PostFragment.astro";
+import siteInfo from "../siteInfo.js";
 
 const { area, nextPage, posts, previousPage, title } = Astro.props;
 ---
 
 <BaseLayout area={area} title={title}>
+  <h1>{ siteInfo.title }</h1>
+  <p>{ siteInfo.description }</p>
   {posts.map((post) => <PostFragment post={post} />)}
   <p>
     {
